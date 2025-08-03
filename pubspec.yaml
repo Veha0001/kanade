@@ -226,10 +226,9 @@ flutter_native_splash:
   #  - 'ios/Runner/Info-Release.plist'
 flutter_launcher_icons:
   android: "launcher_icon"
-  ios: true
+  ios: false
   image_path: "assets/icons/icon.png"
   min_sdk_android: 21
-  remove_alpha_ios: true
 
 flutter:
   generate: true
@@ -249,6 +248,7 @@ flutter:
     - family: Zen Kaku Gothic Antique
       fonts:
         - asset: assets/fonts/ZenKakuGothicAntique-Regular.ttf
+
 
 
 
