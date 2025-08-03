@@ -1,0 +1,52 @@
+name: Build Kanade
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.0' # Update to match your `sdk` constraint
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run build_runner
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      # Optional: Generate localization files
+      - name: Generate localization files
+        run: flutter gen-l10n
+
+      # Optional: Generate launcher icons
+      - name: Generate launcher icons
+        run: dart run flutter_launcher_icons
+
+      # Optional: Generate splash screen
+      - name: Generate splash screen
+        run: dart run flutter_native_splash:create
+
+      - name: Build APK
+        run: flutter build apk --release
+
+      # Optional: Upload build artifact
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: kanade-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
