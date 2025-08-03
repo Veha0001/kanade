@@ -245,3 +245,7 @@ flutter:
         - asset: assets/fonts/ZenKakuGothicAntique-Regular.ttf
 
 
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/icon/icon.png"
